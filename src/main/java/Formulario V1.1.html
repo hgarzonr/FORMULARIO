@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head><title>FORMULARIO CEDULA</title>
+    <meta charset="utf-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <style type="number/css">body {
+        background-color: white;
+        font-family: sans-serif;
+    }
+
+    label {
+        color: #003180;
+        display: block;
+        padding: 5px;
+    }
+    </style>
+    <script type="text/javascript">
+
+
+        window.onload = function () {
+            document.formularioContacto.nombre.focus();
+            document.formularioContacto.addEventListener('submit', validarFormulario);
+        }
+
+        function validarFormulario(evObject) {
+            evObject.preventDefault();
+            var todoCorrecto = true;
+            var formulario = document.formularioContacto;
+            for (var i = 0; i < formulario.length; i++) {
+                if (formulario[i].type == 'text') {
+                    if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)) {
+                        alert(formulario[i].name + ' no puede estar vacío o contener sólo espacios en blanco');
+                        todoCorrecto = false;
+                    }
+                }
+            }
+            if (todoCorrecto == true) {
+                formulario.submit();
+            }
+        }
+
+        function test() {
+            alert("llego");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", "http://localhost:5000/1030570790", true); // true for asynchronous
+            xmlHttp.send(null);
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="cabecera">
+    <h1>INGRESE SU NUMERO DE CEDULA</h1>
+</div>
+<!-- Formulario de contacto -->
+<form name="formularioContacto"
+      class="formularioTipo1"
+      method="get"
+      action="http://google.com">
+    <label for="nombre">
+        <span>Cedula:
+        </span>
+        <input
+                placeholder="Número de cédula"
+                id="nombre"
+                type="text"
+                name="nombre"/>
+    </label>
+    <label>
+        <input
+                type="submit"
+                value="Enviar">
+        <input
+                type="reset"
+                value="Cancelar">
+    </label>
+</form>
+
+<a onclick="test();">
+    Consultar Cedula
+</a>
+
+</body>
+</html>
